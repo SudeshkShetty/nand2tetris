@@ -23,7 +23,4 @@ CHIP DMux8Way {
    DMux (in=temp2, sel=sel[2], a=b, b=f);
    DMux (in=temp3, sel=sel[2], a=c, b=g);
    DMux (in=temp4, sel=sel[2], a=d, b=h);
-
-   
-   
 }

@@ -25,5 +25,12 @@ CHIP Memory {
     OUT out[16];
 
     PARTS:
-	//// Replace this comment with your code.
+    	DMux(in=load, sel=address[14], a=load1, b=load2);
+	RAM16K(in=in, load=load1, address=address[0..13], out=ramOut);
+	Screen(in=in, load=load2, address=address[0..12], out=screenOut);
+	Keyboard(out=keyOut);
+	Mux16(a=ramOut, b=screenOut, sel=address[14], out=muxOut);
+	And(a=address[13], b=address[14], out=andOut);                      //address[13] = 1, address[14] = 1, only for kbd register 24576 sel=1;
+	Mux16(a=muxOut, b=keyOut, sel=andOut, out=out);
+	
 }
